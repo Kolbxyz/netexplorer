@@ -52,7 +52,7 @@ uint16_t search_ports[] = { 28,
 
 void network_addr_req(const char* addr, uint16_t port, struct network_task_info info){
     if(info.skip==1){
-        printf("try connect to %s:%d -> %s\n",addr,port,MSG_SKIPPED);
+        printf("Trying to connect to %s:%d -> %s\n",addr,port,MSG_SKIPPED);
         return;
     }
     int sockfd = socket(AF_INET,SOCK_STREAM,0);
@@ -92,11 +92,11 @@ void network_addr_req(const char* addr, uint16_t port, struct network_task_info 
     }
     close(sockfd);
     if(port_result.type == 0){
-        if(info.log_mode == LOG_ALL){printf("try connect to %s:%d -> %s\n",addr,port,MSG_FAIL);}
+        if(info.log_mode == LOG_ALL){printf("Trying to connect to %s:%d -> %s\n",addr,port,MSG_FAIL);}
         return;
     }
 
-    printf("try connect to %s:%d -> %s %s\n",addr,port,MSG_OK, msg);
+    printf("Trying to connect to %s:%d -> %s %s\n",addr,port,MSG_OK, msg);
 
     free(msg);
     return;
